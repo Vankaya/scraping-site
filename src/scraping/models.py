@@ -2,7 +2,6 @@ from django.db import models
 
 from scraping.utils import from_cyrilic_to_eng
 
-
 def default_urls():
     return {"work":"", "rabota":""}
 
@@ -75,7 +74,3 @@ class Url(models.Model):
 
     class Meta:
         unique_together = ("city", "language")
-
-
-
-
