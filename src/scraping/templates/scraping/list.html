@@ -1,0 +1,56 @@
+ {% extends "base.html" %}
+
+ {% block title%} {% endblock%}
+
+ {% block content %}
+  {% for obj in  %}
+  <div class="card my-2" >
+  <div class="card-header">
+    <a href="{{ obj.url }}">{{ obj.title }}</a>
+  </div>
+  <div class="card-body">
+    <h4>{{ obj.company }}</h4>
+    <p class="card-text">{{obj.description}}</p>
+    <p>{{ obj.city.name }} | {{ obj.language.name }} |
+        <small>{{ obj.timestamp }}</small></p>
+
+  </div>
+</div>
+{% empty %}
+ <h3 class=""> К сожалению по вашему запросу ничего не найдено</h3>
+ {% endfor%}
+ <div class="row">
+     <div class="col">
+         <div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">next</a>
+            <a href="?page={{ object_list.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+     </div>
+ </div>
+ <div class="row ">
+     <div class="col-md-6 mx-auto">
+         <form method="get" action="{% url 'list %}">
+           <div class="form-group">
+           {{ form.as_p }}
+           </div>
+           <button type="submit" class="btn btn-primary">Найти</button>
+         </form>
+     </div>
+ </div>
+
+ <div class="testi">{{ name }}</div>
+
+ {% endblock %}

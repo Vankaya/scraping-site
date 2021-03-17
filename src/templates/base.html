@@ -11,9 +11,10 @@
     <title>{% block title%}Hello, world!{% endblock %}</title>
   </head>
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="{% url 'home' %}">JF</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,6 +36,7 @@
     </div>
   </div>
 </nav>
+  </div>
     <h1>Hello, world!</h1>
     <div class="container">
    {% block content %}{% endblock %}
