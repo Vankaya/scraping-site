@@ -3,7 +3,8 @@
  {% block title%} {% endblock%}
 
  {% block content %}
-  {% for obj in  %}
+
+  {% for obj in object_list  %}
   <div class="card my-2" >
   <div class="card-header">
     <a href="{{ obj.url }}">{{ obj.title }}</a>
@@ -19,6 +20,7 @@
 {% empty %}
  <h3 class=""> К сожалению по вашему запросу ничего не найдено</h3>
  {% endfor%}
+ {% if object_list %}
  <div class="row">
      <div class="col">
          <div class="pagination">
@@ -40,9 +42,10 @@
 </div>
      </div>
  </div>
+ {%  endif %}
  <div class="row ">
      <div class="col-md-6 mx-auto">
-         <form method="get" action="{% url 'list %}">
+         <form method="get" action="{% url 'list' %}">
            <div class="form-group">
            {{ form.as_p }}
            </div>

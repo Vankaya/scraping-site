@@ -27,7 +27,7 @@ def list_view(request):
         paginator = Paginator(qs,10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
-    return render(request, 'scraping/home.html', {'object_list': page_obj,
+    return render(request, 'scraping/list.html', {'object_list': page_obj,
                                                   'form': form})
 
 def test_rest(request):
