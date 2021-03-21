@@ -1,5 +1,6 @@
 import asyncio
 import os, sys
+import datetime as dt
 
 from django.contrib.auth import get_user_model
 
@@ -23,10 +24,12 @@ parsers = (
 
 jobs, errors = [], []
 
+
 def get_settings():
     qs = User.objects.filter(send_email=True).values()
     settings_lst = set((q['city_id'], q['language_id']) for q in qs)
     return  settings_lst
+
 
 def get_urls(_settings):
     qs = Url.objects.all().values()
@@ -42,6 +45,7 @@ def get_urls(_settings):
                 tmp['url_data'] = url_dict.get(pair)
                 urls.append(tmp)
     return urls
+
 
 async def main(value):
     func, url, city, language = value
@@ -77,5 +81,11 @@ for job in jobs:
     except DatabaseError:
         pass
 if errors:
-    er = Error(data=errors).save()
+    qs = Error.objects.filter(timestamp=dt.date.today())
+    if qs.exists():
+        err = qs.first()
+        err.data.update({'errors': errors})
+        err.save()
+    else:
+        er = Error(data=f'errors: {errors}').save()
 

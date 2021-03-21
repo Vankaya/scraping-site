@@ -19,7 +19,20 @@
          </form>
      </div>
  </div>
+<div class="row  my-5">
+     <div class="col-md-6 mx-auto">
+          <p class="my-2">Eсли Вьі не нашли подходящий набор город специальность заполните форму ниже.
+          После того как необходимьіе данньіе будут добавленньі Вьі полyчите письмо</p>
+         <form method="POST" action="{% url 'accounts:contact' %}">{% csrf_token %}
+           <div class="form-group">
+           {{ contact_form.as_p }}
+           </div>
+           <button type="submit" class="btn btn-primary">Отправить</button>
+         </form>
 
+
+     </div>
+ </div>
  <div class="testi">{{ name }}</div>
 
  {% endblock %}

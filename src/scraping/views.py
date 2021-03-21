@@ -31,6 +31,7 @@ def list_view(request):
         context['object_list'] = page_obj
     return render(request, 'scraping/list.html', context)
 
+
 def test_rest(request):
     name = 'Ivan'
     return render(request, 'scraping/home.html', {'name': name})
